@@ -8,6 +8,11 @@ import setup.BaseTest;
 
 public class webMobileTests extends BaseTest {
 
+    @Override
+    public void setUpPageObjects() {
+
+    }
+
     @Test(groups = {"web"},
             description = "Make sure that we've opened IANA homepage")
     public void simpleWebTest() throws InterruptedException {

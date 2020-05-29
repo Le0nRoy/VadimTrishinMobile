@@ -6,28 +6,21 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import pageObjects.PageObject;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
-public class BaseTest implements IDriver {
+public abstract class BaseTest implements IDriver {
 
     // singleton
-    private static AppiumDriver appiumDriver;
-    IPageObject po;
+    protected static AppiumDriver appiumDriver;
 
     @Override
     public AppiumDriver getDriver() {
 
         return appiumDriver;
-    }
-
-    public IPageObject getPo() {
-
-        return po;
     }
 
     @Parameters({"platformName", "appType", "deviceName", "browserName", "app"})
@@ -36,8 +29,7 @@ public class BaseTest implements IDriver {
 
         System.out.println("Before: app type - " + appType);
         setAppiumDriver(platformName, deviceName, browserName, app);
-        setPageObject(appType, appiumDriver);
-
+        setUpPageObjects();
     }
 
     @AfterSuite(alwaysRun = true)
@@ -70,12 +62,8 @@ public class BaseTest implements IDriver {
         // FIXME change to explicit waits
         // Timeouts tuning
         appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
     }
 
-    private void setPageObject(String appType, AppiumDriver appiumDriver) throws Exception {
-
-        po = new PageObject(appType, appiumDriver);
-    }
+    public abstract void setUpPageObjects();
 
 }
