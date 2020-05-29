@@ -1,4 +1,4 @@
-package setup;
+package hw;
 
 import io.appium.java_client.AppiumDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -8,14 +8,20 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+
+import setup.IDriver;
 
 public abstract class BaseTest implements IDriver {
 
     // singleton
     protected static AppiumDriver appiumDriver;
+
+    private TestProperties testProperties;
 
     @Override
     public AppiumDriver getDriver() {
@@ -30,6 +36,7 @@ public abstract class BaseTest implements IDriver {
         System.out.println("Before: app type - " + appType);
         setAppiumDriver(platformName, deviceName, browserName, app);
         setUpPageObjects();
+        setUpDataProviders();
     }
 
     @AfterSuite(alwaysRun = true)
@@ -62,6 +69,25 @@ public abstract class BaseTest implements IDriver {
         // FIXME change to explicit waits
         // Timeouts tuning
         appiumDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+    }
+
+    public void setUpDataProviders() {
+
+        Properties properties = new Properties();
+        String propFileName = "test.properties";
+        try {
+            properties.load(getClass().getClassLoader().getResourceAsStream(propFileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        testProperties = new TestProperties(
+                properties.getProperty("nativeTestDataJsonDataPath"),
+                properties.getProperty("nativeTestDataJsonDataNamePattern")
+        );
+
+        DataProviders.setNativeTestDataJsonDataPath(testProperties.getNativeTestDataJsonDataPath());
+        DataProviders.setNativeTestDataJsonDataNamePattern(testProperties.getNativeTestDataJsonDataNamePattern());
     }
 
     public abstract void setUpPageObjects();

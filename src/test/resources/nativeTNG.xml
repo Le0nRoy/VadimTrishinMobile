@@ -11,7 +11,7 @@
             </run>
         </groups>
         <packages>
-            <package name="scenarios"/>
+            <package name="hw.scenarios"/>
         </packages>
     </test>
 </suite>

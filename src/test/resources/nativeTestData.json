@@ -1,0 +1,7 @@
+{
+  "test_1": {
+    "email": "example@email.com",
+    "userName": "example",
+    "password": "justPass"
+  }
+}

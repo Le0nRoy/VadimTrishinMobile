@@ -1,21 +1,26 @@
-package scenarios;
+package hw.scenarios;
+
+import hw.DTO.NativeTestDTO;
+import hw.DataProviders;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pageObjects.NativePageObject;
-import setup.BaseTest;
+import hw.BaseTest;
 
 public class NativeMobileTests extends BaseTest {
 
     NativePageObject nativePageObject;
 
     @Test(groups = {"native"},
+            dataProviderClass = DataProviders.class,
+            dataProvider = "nativeTestDataProvider",
             description = "This simple test just click on the Sign In button")
-    public void simpleNativeTest() {
+    public void simpleNativeTest(NativeTestDTO dto) {
 
-        String email = "example@email.com";
-        String userName = "example";
-        String password = "justPass";
+        String email = dto.getEmail();
+        String userName = dto.getUserName();
+        String password = dto.getPassword();
 
         nativePageObject.getSignInPageObject().openRegistrationWindow();
         nativePageObject.getRegistrationPageObject().registerAccount(email, userName, password);
