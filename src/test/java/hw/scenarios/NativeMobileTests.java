@@ -14,7 +14,8 @@ public class NativeMobileTests extends BaseTest {
     @Test(groups = {"native"},
             dataProviderClass = DataProviders.class,
             dataProvider = "nativeTestDataProvider",
-            description = "This simple test just click on the Sign In button")
+            description = "This test checks registration, signing in and " +
+                    "checks title of final page.")
     public void registerAccountSignInAndCheckPageTitleTest(NativeTestDTO dto) {
 
         steps.setDto(dto);
