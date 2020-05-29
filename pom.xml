@@ -26,7 +26,7 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
             <properties>
-                <suite.file>src/test/resources/nativeTNG.xml</suite.file>
+                <suite.file>src/test/resources/profiles/nativeTNG.xml</suite.file>
             </properties>
         </profile>
         <profile>
@@ -35,7 +35,7 @@
                 <activeByDefault>true</activeByDefault>
             </activation>
             <properties>
-                <suite.file>./src/test/resources/webTNG.xml</suite.file>
+                <suite.file>./src/test/resources/profiles/webTNG.xml</suite.file>
             </properties>
         </profile>
     </profiles>
