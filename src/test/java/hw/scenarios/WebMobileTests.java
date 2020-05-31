@@ -1,19 +1,20 @@
 package hw.scenarios;
 
+import hw.DTO.WebMobileTestDTO;
+import hw.DataProviders;
+import hw.steps.WebMobileTestSteps;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 import hw.BaseTest;
 
-public class webMobileTests extends BaseTest {
+public class WebMobileTests extends BaseTest {
 
-    @Override
-    public void setUpPageObjects() {
+    WebMobileTestSteps steps;
 
-    }
-
-    @Test(groups = {"web"},
+    @Test(enabled = false,
+            groups = {"web"},
             description = "Make sure that we've opened IANA homepage")
     public void simpleWebTest() throws InterruptedException {
         // open IANA homepage
@@ -29,6 +30,24 @@ public class webMobileTests extends BaseTest {
 
         // Log that test finished
         System.out.println("Site opening done");
+    }
+
+    @Test(groups = {"web"},
+            dataProviderClass = DataProviders.class,
+            dataProvider = "webTestDataProvider",
+            description = "")
+    public void openSearchEPAMInGoogleAndVerifyResults(WebMobileTestDTO dto) {
+
+        steps.setDTO(dto);
+        steps.goToGooglePage();
+        steps.searchByKeyword();
+        steps.verifyRelevanceOfResults();
+    }
+
+    @Override
+    public void setUpPageObjects() {
+
+        steps = new WebMobileTestSteps(appiumDriver);
     }
 
 }

@@ -83,11 +83,15 @@ public abstract class BaseTest implements IDriver {
 
         testProperties = new TestProperties(
                 properties.getProperty("nativeTestDataJsonDataPath"),
-                properties.getProperty("nativeTestDataJsonDataNamePattern")
+                properties.getProperty("nativeTestDataJsonDataNamePattern"),
+                properties.getProperty("webTestDataJsonDataPath"),
+                properties.getProperty("webTestDataJsonDataNamePattern")
         );
 
         DataProviders.setNativeTestDataJsonDataPath(testProperties.getNativeTestDataJsonDataPath());
         DataProviders.setNativeTestDataJsonDataNamePattern(testProperties.getNativeTestDataJsonDataNamePattern());
+        DataProviders.setWebTestDataJsonDataPath(testProperties.getWebTestDataJsonDataPath());
+        DataProviders.setWebTestDataJsonDataNamePattern(testProperties.getWebTestDataJsonDataNamePattern());
     }
 
     public abstract void setUpPageObjects();

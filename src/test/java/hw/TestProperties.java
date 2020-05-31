@@ -9,4 +9,6 @@ public class TestProperties {
 
     private String nativeTestDataJsonDataPath;
     private String nativeTestDataJsonDataNamePattern;
+    private String webTestDataJsonDataPath;
+    private String webTestDataJsonDataNamePattern;
 }
