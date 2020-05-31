@@ -33,7 +33,7 @@ public class WebMobileTestSteps {
 
     public void searchByKeyword() {
 
-        pageObject.getGooglePage().searchByKeyword();
+        pageObject.getGooglePage().searchByKeyword(dto.getSearchKeyword());
     }
 
     public void verifyRelevanceOfResults() {

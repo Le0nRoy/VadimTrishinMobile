@@ -16,7 +16,7 @@ public class GooglePageObject extends AbstractPageObject {
 
     public void openGooglePage() {
 
-        driver.get(dto.getWebPage());
+        driver.get("https://www.google.com/");
         wait.until(
                 wd -> ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete")
         );
