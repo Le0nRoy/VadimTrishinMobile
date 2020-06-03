@@ -1,0 +1,20 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Native mobile testing Suite for EPAM Mobile Cloud">
+    <parameter name="appType" value="native"/>
+    <parameter name="udid" value="PL2GAR9880706649" />
+    <parameter name="deviceName" value="Nokia 6.1"/>
+    <parameter name="deviceName" value="Huawei ELE-L29"/>
+    <parameter name="platformName" value="Android"/>
+    <parameter name="appPackage" value="platkovsky.alexey.emaptestapp"/>
+    <parameter name="appActivity" value="activities.LoginActivity"/>
+    <test name="Cloud Native tests">
+        <groups>
+            <run>
+                <include name="native"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="hw.scenarios.NativeMobileTests" />
+        </classes>
+    </test>
+</suite>

@@ -11,15 +11,59 @@
     <properties>
         <lombok.version>1.18.12</lombok.version>
         <appium.version>7.3.0</appium.version>
+        <!--        For local testing-->
         <appium.server>http://localhost:4723/wd/hub</appium.server>
+        <!--         For cloud testing TOKEN set in system environment variable -->
+        <appium.cloud-server>https://EPM-TSTF:${env.TOKEN}@mobilecloud.epam.com/wd/hub</appium.cloud-server>
         <testng.version>7.1.0</testng.version>
 
         <maven.surefire.version>2.22.2</maven.surefire.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+
     </properties>
 
     <profiles>
+        <profile>
+            <id>cloudNative</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/profiles/cloudNativeTNG.xml</suite.file>
+                <appium.server>${appium.cloud-server}</appium.server>
+            </properties>
+        </profile>
+        <profile>
+            <id>cloudWeb</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/profiles/cloudWebTNG.xml</suite.file>
+                <appium.server>${appium.cloud-server}</appium.server>
+            </properties>
+        </profile>
+        <profile>
+            <id>iosCloudNative</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/profiles/iosCloudNativeTNG.xml</suite.file>
+                <appium.server>${appium.cloud-server}</appium.server>
+            </properties>
+        </profile>
+        <profile>
+            <id>iosCloudWeb</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <properties>
+                <suite.file>src/test/resources/profiles/iosCloudWebTNG.xml</suite.file>
+                <appium.server>${appium.cloud-server}</appium.server>
+            </properties>
+        </profile>
         <profile>
             <id>native</id>
             <activation>
